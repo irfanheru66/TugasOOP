@@ -67,6 +67,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Pembayaran"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCekBayarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnPendaftaran">
       <Properties>
@@ -101,6 +104,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Cek Pasien"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPasienActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

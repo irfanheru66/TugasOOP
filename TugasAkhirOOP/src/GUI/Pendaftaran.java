@@ -168,11 +168,14 @@ public class Pendaftaran extends javax.swing.JFrame {
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
+        getAccessibleContext().setAccessibleDescription("");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtTTLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTTLActionPerformed
         // TODO add your handling code here:
+       
     }//GEN-LAST:event_txtTTLActionPerformed
 
     private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed

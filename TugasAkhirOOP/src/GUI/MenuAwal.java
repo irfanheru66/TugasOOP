@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package GUI;
-
 /**
  *
  * @author Annisa Olga Z
@@ -37,6 +36,11 @@ public class MenuAwal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnCekBayar.setText("Pembayaran");
+        btnCekBayar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCekBayarActionPerformed(evt);
+            }
+        });
 
         btnPendaftaran.setText("Pendaftaran");
         btnPendaftaran.addActionListener(new java.awt.event.ActionListener() {
@@ -58,6 +62,11 @@ public class MenuAwal extends javax.swing.JFrame {
         jLabel10.setText("MENU AWAL");
 
         btnPasien.setText("Cek Pasien");
+        btnPasien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPasienActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,11 +109,30 @@ public class MenuAwal extends javax.swing.JFrame {
 
     private void btnPendaftaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPendaftaranActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        Pendaftaran fp = new Pendaftaran();
+        fp.setVisible(true);
     }//GEN-LAST:event_btnPendaftaranActionPerformed
 
     private void btnCekDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCekDokterActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        TDokter fd = new TDokter();
+        fd.setVisible(true);
     }//GEN-LAST:event_btnCekDokterActionPerformed
+
+    private void btnCekBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCekBayarActionPerformed
+        this.dispose();
+        TPembayaran fbyr = new TPembayaran();
+        fbyr.setVisible(true);
+    }//GEN-LAST:event_btnCekBayarActionPerformed
+
+    private void btnPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasienActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        TPasien fpsn = new TPasien();
+        fpsn.setVisible(true);
+    }//GEN-LAST:event_btnPasienActionPerformed
 
     /**
      * @param args the command line arguments
