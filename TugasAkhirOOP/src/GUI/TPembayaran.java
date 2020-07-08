@@ -5,6 +5,11 @@
  */
 package GUI;
 
+import CRUD.Create;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Annisa Olga Z
@@ -103,6 +108,11 @@ public class TPembayaran extends javax.swing.JFrame {
         jLabel2.setText("No. KTP");
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         btnEdit.setText("Edit");
 
@@ -203,6 +213,25 @@ public class TPembayaran extends javax.swing.JFrame {
     private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnReadActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+                        String sql = "INSERT INTO pembayaran (id_pasien,id_dokter) \n";
+        String koma = ",";
+        String petik = "'";
+        String tutup = ")";
+        sql = sql.concat("VALUES( ");
+        sql = sql.concat(txtKTP.getText()+koma);
+        sql = sql.concat(txtIdDokter.getText()+ tutup);
+        
+       
+        
+        try {
+            System.out.print(new Create().create(sql));
+        } catch (SQLException ex) {
+            Logger.getLogger(Pendaftaran.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
      * @param args the command line arguments

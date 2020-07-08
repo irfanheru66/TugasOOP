@@ -5,6 +5,11 @@
  */
 package GUI;
 
+import CRUD.Create;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Annisa Olga Z
@@ -59,6 +64,11 @@ public class TAsuransi extends javax.swing.JFrame {
         jLabel2.setText("Nama");
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         btnEdit.setText("Edit");
 
@@ -186,6 +196,26 @@ public class TAsuransi extends javax.swing.JFrame {
     private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNamaActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+                String sql = "INSERT INTO asuransi (no_asuransi,nama_asuransi,potongan) \n";
+        String koma = ",";
+        String petik = "'";
+        String tutup = ")";
+        sql = sql.concat("VALUES( ");
+        sql = sql.concat(txtNoAsuransi.getText()+koma);
+        sql = sql.concat(petik +txtNama.getText() +petik + koma);
+        sql = sql.concat(txtPotongan.getText()+ tutup);
+        
+       
+        
+        try {
+            System.out.print(new Create().create(sql));
+        } catch (SQLException ex) {
+            Logger.getLogger(Pendaftaran.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
      * @param args the command line arguments

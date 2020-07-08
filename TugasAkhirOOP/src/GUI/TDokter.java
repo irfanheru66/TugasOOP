@@ -5,6 +5,11 @@
  */
 package GUI;
 
+import CRUD.Create;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Annisa Olga Z
@@ -80,6 +85,11 @@ public class TDokter extends javax.swing.JFrame {
         });
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         btnEdit.setText("Edit");
 
@@ -203,10 +213,9 @@ public class TDokter extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtJam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)))
+                        .addComponent(txtJam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6))
+                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel2)))
@@ -248,6 +257,28 @@ public class TDokter extends javax.swing.JFrame {
     private void txtJamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJamActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtJamActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        String sql = "INSERT INTO dokter (id_dokter,nama,harga,jadwal,jam) \n";
+        String koma = ",";
+        String petik = "'";
+        String tutup = ")";
+        sql = sql.concat("VALUES( ");
+        sql = sql.concat(txtID.getText()+koma);
+        sql = sql.concat(petik +txtNama.getText() +petik + koma);
+        sql = sql.concat(txtHarga.getText() + koma);
+        sql = sql.concat(petik +txtJadwal.getText() +petik + koma);
+        sql = sql.concat(petik +txtJam.getText() +petik + tutup);
+        
+       
+        
+        try {
+            System.out.print(new Create().create(sql));
+        } catch (SQLException ex) {
+            Logger.getLogger(Pendaftaran.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
      * @param args the command line arguments

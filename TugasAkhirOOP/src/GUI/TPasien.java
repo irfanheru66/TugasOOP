@@ -5,6 +5,11 @@
  */
 package GUI;
 
+import CRUD.Create;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Annisa Olga Z
@@ -61,6 +66,11 @@ public class TPasien extends javax.swing.JFrame {
         });
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         btnEdit.setText("Edit");
 
@@ -242,6 +252,29 @@ public class TPasien extends javax.swing.JFrame {
     private void txtTTLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTTLActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTTLActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        
+        String sql = "INSERT INTO pasien (no_ktp,nama,alamat,no_hp,tgl_lahir) \n";
+        String koma = ",";
+        String petik = "'";
+        String tutup = ")";
+        sql = sql.concat("VALUES( ");
+        sql = sql.concat(txtKTP.getText()+koma);
+        sql = sql.concat(petik +txtNama.getText() +petik + koma);
+        sql = sql.concat(petik +txtAlamat.getText() +petik + koma);
+        sql = sql.concat(petik +txtNoHP.getText() +petik + koma);
+        sql = sql.concat(petik +txtTTL.getText() +petik + tutup);
+        
+       
+        
+        try {
+            System.out.print(new Create().create(sql));
+        } catch (SQLException ex) {
+            Logger.getLogger(Pendaftaran.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
      * @param args the command line arguments
