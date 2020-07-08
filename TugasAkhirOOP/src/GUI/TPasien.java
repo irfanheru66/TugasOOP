@@ -6,9 +6,12 @@
 package GUI;
 
 import CRUD.Create;
+import CRUD.Read;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,6 +24,7 @@ public class TPasien extends javax.swing.JFrame {
      */
     public TPasien() {
         initComponents();
+        load_tabel();
     }
 
     /**
@@ -271,6 +275,7 @@ public class TPasien extends javax.swing.JFrame {
         
         try {
             System.out.print(new Create().create(sql));
+            load_tabel();
         } catch (SQLException ex) {
             Logger.getLogger(Pendaftaran.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -317,6 +322,27 @@ public class TPasien extends javax.swing.JFrame {
             }
         });
     }
+            private void load_tabel() {
+      DefaultTableModel model = new DefaultTableModel();
+      
+      model.addColumn("no KTP");
+      model.addColumn("nama");
+      model.addColumn("alamat");
+      model.addColumn("kontak");
+      model.addColumn("Tanggal lahir");
+      model.addColumn("asuransi");
+      String sql="select * from pasien";
+        try {
+            ResultSet res = new Read().exec(sql);
+            while(res.next()){
+                 model.addRow(new Object[]{res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(6),res.getString(7)});
+            }
+            this.tbl_pasien.setModel(model);
+        } catch (SQLException ex) {
+            Logger.getLogger(TAsuransi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;

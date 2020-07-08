@@ -6,9 +6,12 @@
 package GUI;
 
 import CRUD.Create;
+import CRUD.Read;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,6 +24,7 @@ public class TDokter extends javax.swing.JFrame {
      */
     public TDokter() {
         initComponents();
+        load_tabel();
     }
 
     /**
@@ -248,6 +252,7 @@ public class TDokter extends javax.swing.JFrame {
 
     private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_btnReadActionPerformed
 
     private void txtJadwalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJadwalActionPerformed
@@ -272,9 +277,10 @@ public class TDokter extends javax.swing.JFrame {
         sql = sql.concat(petik +txtJam.getText() +petik + tutup);
         
        
-        
+        System.out.print(sql);
         try {
             System.out.print(new Create().create(sql));
+            load_tabel();
         } catch (SQLException ex) {
             Logger.getLogger(Pendaftaran.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -314,6 +320,26 @@ public class TDokter extends javax.swing.JFrame {
                 new TDokter().setVisible(true);
             }
         });
+    }
+        private void load_tabel() {
+      DefaultTableModel model = new DefaultTableModel();
+      
+      model.addColumn("ID");
+      model.addColumn("nama");
+      model.addColumn("Spesialis");
+      model.addColumn("harga");
+      model.addColumn("jadwal");
+      model.addColumn("jam");
+      String sql="select * from dokter";
+        try {
+            ResultSet res = new Read().exec(sql);
+            while(res.next()){
+                 model.addRow(new Object[]{res.getString("id_dokter"),res.getString(4),res.getString(5),res.getString(3),res.getString(6),res.getString(7)});
+            }
+            this.tbl_dokter.setModel(model);
+        } catch (SQLException ex) {
+            Logger.getLogger(TAsuransi.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -5,10 +5,12 @@
  */
 package GUI;
 
-import CRUD.Create;
+import CRUD.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
 
 /**
  *
@@ -21,6 +23,7 @@ public class TAsuransi extends javax.swing.JFrame {
      */
     public TAsuransi() {
         initComponents();
+        load_tabel();
     }
 
     /**
@@ -189,8 +192,12 @@ public class TAsuransi extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
+    
     private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
         // TODO add your handling code here:
+        load_tabel();
+
     }//GEN-LAST:event_btnReadActionPerformed
 
     private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
@@ -269,4 +276,22 @@ public class TAsuransi extends javax.swing.JFrame {
     private javax.swing.JTextField txtNoAsuransi;
     private javax.swing.JTextField txtPotongan;
     // End of variables declaration//GEN-END:variables
+
+    private void load_tabel() {
+      DefaultTableModel model = new DefaultTableModel();
+      
+      model.addColumn("no_asuransi");
+      model.addColumn("nama_asuransi");
+      model.addColumn("potongan");
+      String sql="select * from asuransi";
+        try {
+            ResultSet res = new Read().exec(sql);
+            while(res.next()){
+                 model.addRow(new Object[]{res.getString("no_asuransi"),res.getString("nama_asuransi"),res.getString("potongan")});
+            }
+            this.tbl_asuransi.setModel(model);
+        } catch (SQLException ex) {
+            Logger.getLogger(TAsuransi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
