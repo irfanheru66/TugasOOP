@@ -144,7 +144,8 @@ public class TDokter extends javax.swing.JFrame {
 
         jLabel6.setText("Jam");
 
-        cbSpesialis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSpesialis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "'Bedah Onkologi'", "'Bedah Toraks'", "'Bedah Digestif'", "'Bedah ObGyn'", "'Bedah Saraf'" }));
+        cbSpesialis.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -265,7 +266,7 @@ public class TDokter extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        String sql = "INSERT INTO dokter (id_dokter,nama,harga,jadwal,jam) \n";
+        String sql = "INSERT INTO dokter (id_dokter,nama,harga,jadwal,spesialis,jam) \n";
         String koma = ",";
         String petik = "'";
         String tutup = ")";
@@ -274,6 +275,7 @@ public class TDokter extends javax.swing.JFrame {
         sql = sql.concat(petik +txtNama.getText() +petik + koma);
         sql = sql.concat(txtHarga.getText() + koma);
         sql = sql.concat(petik +txtJadwal.getText() +petik + koma);
+        sql = sql.concat(cbSpesialis.getSelectedItem().toString() + koma);
         sql = sql.concat(petik +txtJam.getText() +petik + tutup);
         
        

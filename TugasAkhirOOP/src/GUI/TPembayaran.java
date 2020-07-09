@@ -6,9 +6,12 @@
 package GUI;
 
 import CRUD.Create;
+import CRUD.Read;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,6 +24,7 @@ public class TPembayaran extends javax.swing.JFrame {
      */
     public TPembayaran() {
         initComponents();
+        load_tabel();
     }
 
     /**
@@ -32,26 +36,20 @@ public class TPembayaran extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnDelete = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbl_asuransi = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
-        txtNoPembayaran = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         txtIdDokter = new javax.swing.JTextField();
         txtKTP = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         btnRead = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
-        btnEdit = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         txtJumlah = new javax.swing.JTextField();
+        btn_total = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        btnDelete.setText("Delete");
 
         tbl_asuransi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -96,8 +94,6 @@ public class TPembayaran extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("No. Pembayaran");
-
         btnRead.setText("Read");
         btnRead.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,55 +110,51 @@ public class TPembayaran extends javax.swing.JFrame {
             }
         });
 
-        btnEdit.setText("Edit");
-
         jLabel4.setText("ID Dokter");
 
-        jLabel5.setText("Jumlah Bayar");
+        btn_total.setText("Total Bayar");
+        btn_total.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_totalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(60, 60, 60)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(258, 258, 258)
+                            .addComponent(jLabel9))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(239, 239, 239)
+                            .addComponent(jLabel11))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(192, 192, 192)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel4))
+                                    .addGap(56, 56, 56)
+                                    .addComponent(txtKTP, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btn_total))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(258, 258, 258)
-                        .addComponent(jLabel9))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(239, 239, 239)
-                        .addComponent(jLabel11))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(192, 192, 192)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtIdDokter, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
                                 .addComponent(btnRead)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSave)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnEdit)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnDelete))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtKTP, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel1))
-                                    .addGap(29, 29, 29)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtIdDokter, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(txtNoPembayaran, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                .addComponent(btnSave))
+                            .addComponent(txtJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(164, 164, 164)))
                 .addContainerGap(73, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -174,32 +166,22 @@ public class TPembayaran extends javax.swing.JFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(txtNoPembayaran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(txtKTP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtKTP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtIdDokter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_total)
+                    .addComponent(txtJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRead)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnEdit)
-                        .addComponent(btnSave)
-                        .addComponent(btnDelete)))
+                    .addComponent(btnSave))
                 .addContainerGap())
         );
 
@@ -216,13 +198,16 @@ public class TPembayaran extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-                        String sql = "INSERT INTO pembayaran (id_pasien,id_dokter) \n";
+                        String sql = "INSERT INTO pembayaran (id_pasien,id_dokter,jumlah_bayar)";
         String koma = ",";
         String petik = "'";
         String tutup = ")";
         sql = sql.concat("VALUES( ");
         sql = sql.concat(txtKTP.getText()+koma);
-        sql = sql.concat(txtIdDokter.getText()+ tutup);
+        
+        sql = sql.concat(txtIdDokter.getText()+koma);
+        
+        sql = sql.concat(txtJumlah.getText()+tutup);
         
        
         
@@ -232,6 +217,18 @@ public class TPembayaran extends javax.swing.JFrame {
             Logger.getLogger(Pendaftaran.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btn_totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_totalActionPerformed
+        // TODO add your handling code here:
+        int potongan = getPotongan(txtKTP.getText());
+       
+        int harga = getHarga(txtIdDokter.getText());
+        System.out.print(harga);
+        int total = harga - ((potongan)*harga/100);
+        String totalS  = Integer.toString(total);
+        
+        txtJumlah.setText(totalS);
+    }//GEN-LAST:event_btn_totalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,23 +265,73 @@ public class TPembayaran extends javax.swing.JFrame {
             }
         });
     }
+    private void load_tabel() {
+      DefaultTableModel model = new DefaultTableModel();
+      
+      model.addColumn("no KTP");
+      model.addColumn("Id Dokter");
+      model.addColumn("total bayar");
+      String sql="select * from pembayaran";
+        try {
+            ResultSet res = new Read().exec(sql);
+            while(res.next()){
+                 model.addRow(new Object[]{res.getString(2),res.getString(3),res.getString(4)});
+            }
+            this.tbl_asuransi.setModel(model);
+        } catch (SQLException ex) {
+            Logger.getLogger(TAsuransi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnRead;
     private javax.swing.JButton btnSave;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btn_total;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tbl_asuransi;
     private javax.swing.JTextField txtIdDokter;
     private javax.swing.JTextField txtJumlah;
     private javax.swing.JTextField txtKTP;
-    private javax.swing.JTextField txtNoPembayaran;
     // End of variables declaration//GEN-END:variables
+
+    private int getPotongan(String id){
+        String sql ="SELECT asuransi.potongan FROM pasien INNER JOIN asuransi ON pasien.no_asuransi = asuransi.no_asuransi WHERE pasien.no_ktp=";
+        sql = sql.concat(id);
+        System.out.print(sql);
+        
+        int p = 0 ;
+        
+       ResultSet res;
+        try {
+            res = new Read().exec(sql);
+            if(res.next()){
+        p = res.getInt(1);
+       }
+        } catch (SQLException ex) {
+            Logger.getLogger(TPembayaran.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return p;
+    }
+
+    private int getHarga(String text) {
+        String sql ="SELECT harga FROM dokter where id_dokter=";
+        sql = sql.concat(text);
+        int h = 0;
+             ResultSet res;
+        try {
+            res = new Read().exec(sql);
+            if(res.next()){
+       h = res.getInt(1);
+       }
+        } catch (SQLException ex) {
+            Logger.getLogger(TPembayaran.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return h;
+    }
+
 }

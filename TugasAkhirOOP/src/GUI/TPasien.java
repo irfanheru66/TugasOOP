@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.ComboBoxModel;
 
 /**
  *
@@ -25,6 +26,7 @@ public class TPasien extends javax.swing.JFrame {
     public TPasien() {
         initComponents();
         load_tabel();
+        load_asuransi();
     }
 
     /**
@@ -59,8 +61,6 @@ public class TPasien extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        cbAsuransi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnRead.setText("Read");
         btnRead.addActionListener(new java.awt.event.ActionListener() {
@@ -246,7 +246,7 @@ public class TPasien extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
-        // TODO add your handling code here:
+        load_tabel();
     }//GEN-LAST:event_btnReadActionPerformed
 
     private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
@@ -260,7 +260,7 @@ public class TPasien extends javax.swing.JFrame {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         
-        String sql = "INSERT INTO pasien (no_ktp,nama,alamat,no_hp,tgl_lahir) \n";
+        String sql = "INSERT INTO pasien (no_ktp,nama,alamat,no_asuransi,no_hp,tgl_lahir) \n";
         String koma = ",";
         String petik = "'";
         String tutup = ")";
@@ -268,10 +268,11 @@ public class TPasien extends javax.swing.JFrame {
         sql = sql.concat(txtKTP.getText()+koma);
         sql = sql.concat(petik +txtNama.getText() +petik + koma);
         sql = sql.concat(petik +txtAlamat.getText() +petik + koma);
+        sql = sql.concat(this.idAsuransi[cbAsuransi.getSelectedIndex()]+ koma);
         sql = sql.concat(petik +txtNoHP.getText() +petik + koma);
         sql = sql.concat(petik +txtTTL.getText() +petik + tutup);
         
-       
+       System.out.print(sql);
         
         try {
             System.out.print(new Create().create(sql));
@@ -322,6 +323,25 @@ public class TPasien extends javax.swing.JFrame {
             }
         });
     }
+    private void load_asuransi() {
+        
+        String sql="select nama_asuransi,no_asuransi from asuransi";
+        cbAsuransi.addItem("non-asuransi");
+        int i = 0;
+        this.idAsuransi[0]="NULL"; 
+        try {
+            ResultSet res = new Read().exec(sql);
+            while(res.next()){
+                
+            i++;
+            cbAsuransi.addItem(res.getString(1));
+            this.idAsuransi[i] = res.getString(2);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TPasien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
             private void load_tabel() {
       DefaultTableModel model = new DefaultTableModel();
       
@@ -342,7 +362,9 @@ public class TPasien extends javax.swing.JFrame {
             Logger.getLogger(TAsuransi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+            
+            private String idAsuransi[]= new String[100];
+            
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
