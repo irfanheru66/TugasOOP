@@ -193,7 +193,7 @@ public class TPembayaran extends javax.swing.JFrame {
     }//GEN-LAST:event_txtKTPActionPerformed
 
     private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
-        // TODO add your handling code here:
+        load_tabel();
     }//GEN-LAST:event_btnReadActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -213,6 +213,7 @@ public class TPembayaran extends javax.swing.JFrame {
         
         try {
             System.out.print(new Create().create(sql));
+            load_tabel();
         } catch (SQLException ex) {
             Logger.getLogger(Pendaftaran.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -268,14 +269,18 @@ public class TPembayaran extends javax.swing.JFrame {
     private void load_tabel() {
       DefaultTableModel model = new DefaultTableModel();
       
-      model.addColumn("no KTP");
-      model.addColumn("Id Dokter");
+      model.addColumn("nama Pasien");
+      model.addColumn("nama Dokter");
       model.addColumn("total bayar");
-      String sql="select * from pembayaran";
+      model.addColumn("jadwal");
+      String sql="SELECT pasien.nama, dokter.nama,pembayaran.jumlah_bayar,dokter.jadwal\n" +
+"FROM pembayaran inner JOIN pasien\n" +
+"ON pembayaran.id_pasien = pasien.no_ktp \n" +
+"INNER JOIN dokter ON pembayaran.id_dokter = dokter.id_dokter";
         try {
             ResultSet res = new Read().exec(sql);
             while(res.next()){
-                 model.addRow(new Object[]{res.getString(2),res.getString(3),res.getString(4)});
+                 model.addRow(new Object[]{res.getString(1),res.getString(2),res.getString(3),res.getString(4)});
             }
             this.tbl_asuransi.setModel(model);
         } catch (SQLException ex) {

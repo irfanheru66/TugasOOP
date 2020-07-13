@@ -31,7 +31,6 @@ public class MenuAwal extends javax.swing.JFrame {
     private void initComponents() {
 
         btnCekBayar = new javax.swing.JButton();
-        btnPendaftaran = new javax.swing.JButton();
         btnCekDokter = new javax.swing.JButton();
         btnCekAsuransi = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
@@ -46,13 +45,6 @@ public class MenuAwal extends javax.swing.JFrame {
             }
         });
 
-        btnPendaftaran.setText("Pendaftaran");
-        btnPendaftaran.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPendaftaranActionPerformed(evt);
-            }
-        });
-
         btnCekDokter.setText("Cek Dokter");
         btnCekDokter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,6 +53,11 @@ public class MenuAwal extends javax.swing.JFrame {
         });
 
         btnCekAsuransi.setText("Cek Asuransi");
+        btnCekAsuransi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCekAsuransiActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setText("MENU AWAL");
@@ -77,18 +74,18 @@ public class MenuAwal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(125, 125, 125)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(23, 23, 23))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnCekBayar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnPendaftaran, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCekDokter, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCekAsuransi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(133, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(jLabel10))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnCekBayar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCekDokter, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCekAsuransi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,8 +93,6 @@ public class MenuAwal extends javax.swing.JFrame {
                 .addGap(84, 84, 84)
                 .addComponent(jLabel10)
                 .addGap(18, 18, 18)
-                .addComponent(btnPendaftaran)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCekBayar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPasien)
@@ -105,18 +100,11 @@ public class MenuAwal extends javax.swing.JFrame {
                 .addComponent(btnCekDokter)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCekAsuransi)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnPendaftaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPendaftaranActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        Pendaftaran fp = new Pendaftaran();
-        fp.setVisible(true);
-    }//GEN-LAST:event_btnPendaftaranActionPerformed
 
     private void btnCekDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCekDokterActionPerformed
         // TODO add your handling code here:
@@ -137,6 +125,11 @@ public class MenuAwal extends javax.swing.JFrame {
         TPasien fpsn = new TPasien();
         fpsn.setVisible(true);
     }//GEN-LAST:event_btnPasienActionPerformed
+
+    private void btnCekAsuransiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCekAsuransiActionPerformed
+        // TODO add your handling code here:
+        new TAsuransi().setVisible(true);
+    }//GEN-LAST:event_btnCekAsuransiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,7 +171,6 @@ public class MenuAwal extends javax.swing.JFrame {
     private javax.swing.JButton btnCekBayar;
     private javax.swing.JButton btnCekDokter;
     private javax.swing.JButton btnPasien;
-    private javax.swing.JButton btnPendaftaran;
     private javax.swing.JLabel jLabel10;
     // End of variables declaration//GEN-END:variables
 }

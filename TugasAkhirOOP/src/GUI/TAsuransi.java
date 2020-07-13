@@ -41,7 +41,6 @@ public class TAsuransi extends javax.swing.JFrame {
         btnRead = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
-        btnEdit = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -73,11 +72,14 @@ public class TAsuransi extends javax.swing.JFrame {
             }
         });
 
-        btnEdit.setText("Edit");
-
         jLabel4.setText("Potongan");
 
-        btnDelete.setText("Delete");
+        btnDelete.setText("<");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         tbl_asuransi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,7 +142,9 @@ public class TAsuransi extends javax.swing.JFrame {
                                     .addComponent(txtPotongan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                                     .addComponent(txtNoAsuransi)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(264, 264, 264)
+                        .addContainerGap()
+                        .addComponent(btnDelete)
+                        .addGap(191, 191, 191)
                         .addComponent(jLabel9))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(60, 60, 60)
@@ -149,19 +153,21 @@ public class TAsuransi extends javax.swing.JFrame {
                         .addGap(203, 203, 203)
                         .addComponent(btnRead)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSave)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEdit)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDelete)))
+                        .addComponent(btnSave)))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnDelete)
+                        .addGap(15, 15, 15)))
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel11)
@@ -182,10 +188,7 @@ public class TAsuransi extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRead)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnEdit)
-                        .addComponent(btnSave)
-                        .addComponent(btnDelete)))
+                    .addComponent(btnSave))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -223,6 +226,11 @@ public class TAsuransi extends javax.swing.JFrame {
             Logger.getLogger(Pendaftaran.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        new MenuAwal().setVisible(true);
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -262,7 +270,6 @@ public class TAsuransi extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnRead;
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel1;
