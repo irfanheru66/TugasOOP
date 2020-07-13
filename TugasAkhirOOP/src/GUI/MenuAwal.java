@@ -45,14 +45,14 @@ public class MenuAwal extends javax.swing.JFrame {
             }
         });
 
-        btnCekDokter.setText("Cek Dokter");
+        btnCekDokter.setText("Data Dokter");
         btnCekDokter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCekDokterActionPerformed(evt);
             }
         });
 
-        btnCekAsuransi.setText("Cek Asuransi");
+        btnCekAsuransi.setText("Data Asuransi");
         btnCekAsuransi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCekAsuransiActionPerformed(evt);
@@ -60,9 +60,9 @@ public class MenuAwal extends javax.swing.JFrame {
         });
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel10.setText("MENU AWAL");
+        jLabel10.setText("Resepsionis Rumah Sakit");
 
-        btnPasien.setText("Cek Pasien");
+        btnPasien.setText("Data Pasien");
         btnPasien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPasienActionPerformed(evt);
@@ -76,31 +76,31 @@ public class MenuAwal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
+                        .addGap(103, 103, 103)
                         .addComponent(jLabel10))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
+                        .addGap(128, 128, 128)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnCekBayar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCekDokter, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCekAsuransi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(84, 84, 84)
+                .addGap(40, 40, 40)
                 .addComponent(jLabel10)
-                .addGap(18, 18, 18)
+                .addGap(42, 42, 42)
                 .addComponent(btnCekBayar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnPasien)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnCekDokter)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnCekAsuransi)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
@@ -108,20 +108,19 @@ public class MenuAwal extends javax.swing.JFrame {
 
     private void btnCekDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCekDokterActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        
         TDokter fd = new TDokter();
         fd.setVisible(true);
     }//GEN-LAST:event_btnCekDokterActionPerformed
 
     private void btnCekBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCekBayarActionPerformed
-        this.dispose();
+        
         TPembayaran fbyr = new TPembayaran();
         fbyr.setVisible(true);
     }//GEN-LAST:event_btnCekBayarActionPerformed
 
     private void btnPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasienActionPerformed
         // TODO add your handling code here:
-        this.dispose();
         TPasien fpsn = new TPasien();
         fpsn.setVisible(true);
     }//GEN-LAST:event_btnPasienActionPerformed
