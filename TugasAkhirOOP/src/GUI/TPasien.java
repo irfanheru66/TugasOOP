@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import CRUD.Create;
+import CRUD.*;
 import CRUD.Read;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +25,7 @@ public class TPasien extends javax.swing.JFrame {
      */
     public TPasien() {
         initComponents();
-        load_tabel();
+        load_tabel(1);
         load_asuransi();
     }
 
@@ -246,7 +246,7 @@ public class TPasien extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
-        load_tabel();
+        load_tabel(1);
     }//GEN-LAST:event_btnReadActionPerformed
 
     private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
@@ -276,7 +276,7 @@ public class TPasien extends javax.swing.JFrame {
         
         try {
             System.out.print(new Create().create(sql));
-            load_tabel();
+            load_tabel(1);
         } catch (SQLException ex) {
             Logger.getLogger(Pendaftaran.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -342,9 +342,36 @@ public class TPasien extends javax.swing.JFrame {
         }
         
     }
-            private void load_tabel() {
-      DefaultTableModel model = new DefaultTableModel();
+    
+    private int indAsuransi(String index){
+
+    try{
+        int r = 0;
+    
+    for (int i=0; i<idAsuransi.length; i++) 
+    {
+
+        if (index.equals(idAsuransi[i])){
+        r = i ;   
+        break;
+        }
+    }
+    
+        
+    return r;
+    }
+    catch(Exception e){
+      return 0;
+    }
+    
+    }
+    
+    
+    
+  private void load_tabel(int i) {
       
+      final DefaultTableModel model = new DefaultTableModel();
+
       model.addColumn("no KTP");
       model.addColumn("nama");
       model.addColumn("alamat");
@@ -361,11 +388,17 @@ public class TPasien extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(TAsuransi.class.getName()).log(Level.SEVERE, null, ex);
         }
+      
+      
+      
+      
+
     }
             
-            private String idAsuransi[]= new String[100];
+      private String idAsuransi[]= new String[100];
             
 
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
