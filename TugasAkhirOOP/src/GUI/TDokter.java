@@ -48,8 +48,6 @@ public class TDokter extends javax.swing.JFrame {
         txtHarga = new javax.swing.JTextField();
         btnRead = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
-        btnEdit = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbl_dokter = new javax.swing.JTable();
         txtJadwal = new javax.swing.JTextField();
@@ -94,10 +92,6 @@ public class TDokter extends javax.swing.JFrame {
                 btnSaveActionPerformed(evt);
             }
         });
-
-        btnEdit.setText("Edit");
-
-        btnDelete.setText("Delete");
 
         tbl_dokter.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -193,11 +187,7 @@ public class TDokter extends javax.swing.JFrame {
                         .addGap(208, 208, 208)
                         .addComponent(btnRead)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSave)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEdit)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDelete)))
+                        .addComponent(btnSave)))
                 .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -237,10 +227,7 @@ public class TDokter extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRead)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnEdit)
-                        .addComponent(btnSave)
-                        .addComponent(btnDelete)))
+                    .addComponent(btnSave))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
@@ -345,8 +332,6 @@ public class TDokter extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnRead;
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox cbSpesialis;
