@@ -3,15 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/codingan/java/TA%20OOP/TugasOOP/TugasAkhirOOP/src/CRUD/Update.java</file>
-            <file>file:/D:/codingan/java/TA%20OOP/TugasOOP/TugasAkhirOOP/src/GUI/MenuAwal.java</file>
             <file>file:/D:/codingan/java/TA%20OOP/TugasOOP/TugasAkhirOOP/src/CRUD/Config.java</file>
-            <file>file:/D:/codingan/java/TA%20OOP/TugasOOP/TugasAkhirOOP/src/CRUD/Read.java</file>
+            <file>file:/D:/codingan/java/TA%20OOP/TugasOOP/TugasAkhirOOP/src/Model/Asuransi.java</file>
             <file>file:/D:/codingan/java/TA%20OOP/TugasOOP/TugasAkhirOOP/src/GUI/TDokter.java</file>
-            <file>file:/D:/codingan/java/TA%20OOP/TugasOOP/TugasAkhirOOP/src/CRUD/Create.java</file>
-            <file>file:/D:/codingan/java/TA%20OOP/TugasOOP/TugasAkhirOOP/src/GUI/TPasien.java</file>
+            <file>file:/D:/codingan/java/TA%20OOP/TugasOOP/TugasAkhirOOP/src/Model/Pembayaran.java</file>
+            <file>file:/D:/codingan/java/TA%20OOP/TugasOOP/TugasAkhirOOP/src/Model/Public.java</file>
             <file>file:/D:/codingan/java/TA%20OOP/TugasOOP/TugasAkhirOOP/src/GUI/TAsuransi.java</file>
             <file>file:/D:/codingan/java/TA%20OOP/TugasOOP/TugasAkhirOOP/src/GUI/TPembayaran.java</file>
+            <file>file:/D:/codingan/java/TA%20OOP/TugasOOP/TugasAkhirOOP/src/CRUD/Update.java</file>
+            <file>file:/D:/codingan/java/TA%20OOP/TugasOOP/TugasAkhirOOP/src/GUI/MenuAwal.java</file>
+            <file>file:/D:/codingan/java/TA%20OOP/TugasOOP/TugasAkhirOOP/src/Model/Dokter.java</file>
+            <file>file:/D:/codingan/java/TA%20OOP/TugasOOP/TugasAkhirOOP/src/CRUD/Read.java</file>
+            <file>file:/D:/codingan/java/TA%20OOP/TugasOOP/TugasAkhirOOP/src/CRUD/Create.java</file>
+            <file>file:/D:/codingan/java/TA%20OOP/TugasOOP/TugasAkhirOOP/src/Model/Pasien.java</file>
+            <file>file:/D:/codingan/java/TA%20OOP/TugasOOP/TugasAkhirOOP/src/GUI/TPasien.java</file>
             <file>file:/D:/codingan/java/TA%20OOP/TugasOOP/TugasAkhirOOP/src/GUI/Pendaftaran.java</file>
         </group>
     </open-files>

@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ComboBoxModel;
+import Model.Pasien;
 
 /**
  *
@@ -57,6 +58,8 @@ public class TPasien extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         txtTTL = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
+        btnDel = new javax.swing.JButton();
+        btnDel1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,6 +138,20 @@ public class TPasien extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel11.setText("INPUT DATA PASIEN");
 
+        btnDel.setText("Delete");
+        btnDel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelActionPerformed(evt);
+            }
+        });
+
+        btnDel1.setText("Edit");
+        btnDel1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDel1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -179,10 +196,17 @@ public class TPasien extends javax.swing.JFrame {
                                                         .addComponent(txtKTP, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                             .addGap(36, 36, 36)
                                             .addComponent(jLabel5))))
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbAsuransi, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(26, 26, 26)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cbAsuransi, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnDel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnDel1)))))))
                 .addContainerGap(104, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -223,7 +247,10 @@ public class TPasien extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRead)
-                    .addComponent(btnSave))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnSave)
+                        .addComponent(btnDel)
+                        .addComponent(btnDel1)))
                 .addGap(53, 53, 53))
         );
 
@@ -245,27 +272,39 @@ public class TPasien extends javax.swing.JFrame {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         
-        String sql = "INSERT INTO pasien (no_ktp,nama,alamat,no_asuransi,no_hp,tgl_lahir) \n";
-        String koma = ",";
-        String petik = "'";
-        String tutup = ")";
-        sql = sql.concat("VALUES( ");
-        sql = sql.concat(txtKTP.getText()+koma);
-        sql = sql.concat(petik +txtNama.getText() +petik + koma);
-        sql = sql.concat(petik +txtAlamat.getText() +petik + koma);
-        sql = sql.concat(this.idAsuransi[cbAsuransi.getSelectedIndex()]+ koma);
-        sql = sql.concat(petik +txtNoHP.getText() +petik + koma);
-        sql = sql.concat(petik +txtTTL.getText() +petik + tutup);
+
         
-       System.out.print(sql);
+        Pasien psn = new Pasien(txtNama.getText(),
+                txtAlamat.getText(),
+                txtKTP.getText(),
+                this.idAsuransi[cbAsuransi.getSelectedIndex()],
+        txtNoHP.getText(),txtTTL.getText());
         
-        try {
-            System.out.print(new Create().create(sql));
-            load_tabel(1);
-        } catch (SQLException ex) {
-            Logger.getLogger(Pendaftaran.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        psn.write();
+        
+
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
+        // TODO add your handling code here:
+                Pasien psn = new Pasien(txtNama.getText(),
+                txtAlamat.getText(),
+                txtKTP.getText(),
+                this.idAsuransi[cbAsuransi.getSelectedIndex()],
+        txtNoHP.getText(),txtTTL.getText());
+                
+                psn.delete();
+    }//GEN-LAST:event_btnDelActionPerformed
+
+    private void btnDel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDel1ActionPerformed
+        // TODO add your handling code here:
+                        Pasien psn = new Pasien(txtNama.getText(),
+                txtAlamat.getText(),
+                txtKTP.getText(),
+                this.idAsuransi[cbAsuransi.getSelectedIndex()],
+        txtNoHP.getText(),txtTTL.getText());
+                        psn.edit();
+    }//GEN-LAST:event_btnDel1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -385,6 +424,8 @@ public class TPasien extends javax.swing.JFrame {
 
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDel;
+    private javax.swing.JButton btnDel1;
     private javax.swing.JButton btnRead;
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox cbAsuransi;

@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
-
+import Model.Asuransi;
 /**
  *
  * @author Annisa Olga Z
@@ -48,6 +48,8 @@ public class TAsuransi extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txtNoAsuransi = new javax.swing.JTextField();
         txtNama = new javax.swing.JTextField();
+        btnSave1 = new javax.swing.JButton();
+        btnSave2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -121,6 +123,20 @@ public class TAsuransi extends javax.swing.JFrame {
             }
         });
 
+        btnSave1.setText("Delete");
+        btnSave1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSave1ActionPerformed(evt);
+            }
+        });
+
+        btnSave2.setText("Edit");
+        btnSave2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSave2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -153,7 +169,11 @@ public class TAsuransi extends javax.swing.JFrame {
                         .addGap(203, 203, 203)
                         .addComponent(btnRead)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSave)))
+                        .addComponent(btnSave)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSave1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSave2)))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -188,7 +208,10 @@ public class TAsuransi extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRead)
-                    .addComponent(btnSave))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnSave)
+                        .addComponent(btnSave1)
+                        .addComponent(btnSave2)))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -209,28 +232,36 @@ public class TAsuransi extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-                String sql = "INSERT INTO asuransi (no_asuransi,nama_asuransi,potongan) \n";
-        String koma = ",";
-        String petik = "'";
-        String tutup = ")";
-        sql = sql.concat("VALUES( ");
-        sql = sql.concat(txtNoAsuransi.getText()+koma);
-        sql = sql.concat(petik +txtNama.getText() +petik + koma);
-        sql = sql.concat(txtPotongan.getText()+ tutup);
+
         
-       
+        Asuransi as = new Asuransi(
+        txtNoAsuransi.getText(),txtNama.getText(),txtPotongan.getText()
+        );
         
-        try {
-            System.out.print(new Create().create(sql));
-        } catch (SQLException ex) {
-            Logger.getLogger(Pendaftaran.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        as.write();
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         new MenuAwal().setVisible(true);
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
+        // TODO add your handling code here:
+                Asuransi as = new Asuransi(
+        txtNoAsuransi.getText(),txtNama.getText(),txtPotongan.getText()
+        );
+                as.delete();
+    }//GEN-LAST:event_btnSave1ActionPerformed
+
+    private void btnSave2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave2ActionPerformed
+        // TODO add your handling code here:
+                        Asuransi as = new Asuransi(
+        txtNoAsuransi.getText(),txtNama.getText(),txtPotongan.getText()
+        );
+                        as.edit();
+    }//GEN-LAST:event_btnSave2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,6 +303,8 @@ public class TAsuransi extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnRead;
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnSave1;
+    private javax.swing.JButton btnSave2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;

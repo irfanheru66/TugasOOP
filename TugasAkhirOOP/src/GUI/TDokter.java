@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import Model.*;
 
 /**
  *
@@ -54,6 +55,8 @@ public class TDokter extends javax.swing.JFrame {
         txtJam = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         cbSpesialis = new javax.swing.JComboBox();
+        btnSave1 = new javax.swing.JButton();
+        btnSave2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -141,6 +144,20 @@ public class TDokter extends javax.swing.JFrame {
         cbSpesialis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "'Bedah Onkologi'", "'Bedah Toraks'", "'Bedah Digestif'", "'Bedah ObGyn'", "'Bedah Saraf'" }));
         cbSpesialis.setToolTipText("");
 
+        btnSave1.setText("Delete");
+        btnSave1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSave1ActionPerformed(evt);
+            }
+        });
+
+        btnSave2.setText("Edit");
+        btnSave2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSave2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -187,7 +204,11 @@ public class TDokter extends javax.swing.JFrame {
                         .addGap(208, 208, 208)
                         .addComponent(btnRead)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSave)))
+                        .addComponent(btnSave)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSave1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSave2)))
                 .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -227,7 +248,10 @@ public class TDokter extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRead)
-                    .addComponent(btnSave))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnSave)
+                        .addComponent(btnSave1)
+                        .addComponent(btnSave2)))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
@@ -240,6 +264,7 @@ public class TDokter extends javax.swing.JFrame {
 
     private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
         // TODO add your handling code here:
+        load_tabel();
 
     }//GEN-LAST:event_btnReadActionPerformed
 
@@ -253,27 +278,46 @@ public class TDokter extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        String sql = "INSERT INTO dokter (id_dokter,nama,harga,jadwal,spesialis,jam) \n";
-        String koma = ",";
-        String petik = "'";
-        String tutup = ")";
-        sql = sql.concat("VALUES( ");
-        sql = sql.concat(txtID.getText()+koma);
-        sql = sql.concat(petik +txtNama.getText() +petik + koma);
-        sql = sql.concat(txtHarga.getText() + koma);
-        sql = sql.concat(petik +txtJadwal.getText() +petik + koma);
-        sql = sql.concat(cbSpesialis.getSelectedItem().toString() + koma);
-        sql = sql.concat(petik +txtJam.getText() +petik + tutup);
         
-       
-        System.out.print(sql);
-        try {
-            System.out.print(new Create().create(sql));
-            load_tabel();
-        } catch (SQLException ex) {
-            Logger.getLogger(Pendaftaran.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Dokter dk = new Dokter(
+        txtID.getText(),
+         txtNama.getText(),
+                txtHarga.getText(),
+                txtJadwal.getText(),
+                cbSpesialis.getSelectedItem().toString(),
+                txtJam.getText()
+        );
+        dk.Write();
+        
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
+        // TODO add your handling code here:
+                Dokter dk = new Dokter(
+        txtID.getText(),
+         txtNama.getText(),
+                txtHarga.getText(),
+                txtJadwal.getText(),
+                cbSpesialis.getSelectedItem().toString(),
+                txtJam.getText()
+        );
+                dk.delete();
+                
+        
+    }//GEN-LAST:event_btnSave1ActionPerformed
+
+    private void btnSave2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave2ActionPerformed
+        // TODO add your handling code here:
+                        Dokter dk = new Dokter(
+        txtID.getText(),
+         txtNama.getText(),
+                txtHarga.getText(),
+                txtJadwal.getText(),
+                cbSpesialis.getSelectedItem().toString(),
+                txtJam.getText()
+        );
+                        dk.edit();
+    }//GEN-LAST:event_btnSave2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -334,6 +378,8 @@ public class TDokter extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRead;
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnSave1;
+    private javax.swing.JButton btnSave2;
     private javax.swing.JComboBox cbSpesialis;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

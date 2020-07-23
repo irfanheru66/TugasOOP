@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import Model.Pembayaran;
 
 /**
  *
@@ -54,6 +55,10 @@ public class TPembayaran extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_dokter = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
+        btnDel = new javax.swing.JButton();
+        btnDel1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txtbyr = new javax.swing.JTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -156,6 +161,22 @@ public class TPembayaran extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setText("Data dokter");
 
+        btnDel.setText("Delete");
+        btnDel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelActionPerformed(evt);
+            }
+        });
+
+        btnDel1.setText("Edit");
+        btnDel1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDel1ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("no. bayar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -165,27 +186,37 @@ public class TPembayaran extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(274, 274, 274)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(15, 15, 15)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel4))
-                                        .addGap(32, 32, 32))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(btn_total)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtKTP, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(txtJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtIdDokter, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnRead)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnSave))))
-                            .addComponent(jLabel11)))
+                            .addComponent(jLabel11)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnRead)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnSave)
+                                    .addGap(26, 26, 26)
+                                    .addComponent(btnDel)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btnDel1))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(15, 15, 15)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel2)
+                                                .addComponent(jLabel4))
+                                            .addGap(32, 32, 32))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(btn_total)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtKTP, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtIdDokter, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addComponent(jLabel5)
+                                    .addGap(32, 32, 32)
+                                    .addComponent(txtbyr, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,11 +258,17 @@ public class TPembayaran extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_total)
                     .addComponent(txtJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtbyr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave)
-                    .addComponent(btnRead))
-                .addContainerGap(36, Short.MAX_VALUE))
+                    .addComponent(btnRead)
+                    .addComponent(btnDel)
+                    .addComponent(btnDel1))
+                .addContainerGap())
         );
 
         pack();
@@ -247,25 +284,20 @@ public class TPembayaran extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-                        String sql = "INSERT INTO pembayaran (id_pasien,id_dokter,jumlah_bayar)";
-        String koma = ",";
-        String petik = "'";
-        String tutup = ")";
-        sql = sql.concat("VALUES( ");
-        sql = sql.concat(txtKTP.getText()+koma);
+
         
-        sql = sql.concat(txtIdDokter.getText()+koma);
+        Pembayaran byr = new Pembayaran(
+        txtKTP.getText(),
+                txtIdDokter.getText(),
+                txtJumlah.getText()
+        );
         
-        sql = sql.concat(txtJumlah.getText()+tutup);
+       byr.write();
+        
         
        
         
-        try {
-            System.out.print(new Create().create(sql));
-            load_tabel();
-        } catch (SQLException ex) {
-            Logger.getLogger(Pendaftaran.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btn_totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_totalActionPerformed
@@ -279,6 +311,26 @@ public class TPembayaran extends javax.swing.JFrame {
         
         txtJumlah.setText(totalS);
     }//GEN-LAST:event_btn_totalActionPerformed
+
+    private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
+        // TODO add your handling code here:
+                Pembayaran byr = new Pembayaran(
+        txtKTP.getText(),
+                txtIdDokter.getText(),
+                txtJumlah.getText()
+        );
+        byr.delete();
+    }//GEN-LAST:event_btnDelActionPerformed
+
+    private void btnDel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDel1ActionPerformed
+        // TODO add your handling code here:
+                   Pembayaran byr = new Pembayaran(
+        txtKTP.getText(),
+                txtIdDokter.getText(),
+                txtJumlah.getText()
+        );
+                   byr.edit(txtbyr.getText());
+    }//GEN-LAST:event_btnDel1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -322,14 +374,15 @@ public class TPembayaran extends javax.swing.JFrame {
       model.addColumn("nama Dokter");
       model.addColumn("total bayar");
       model.addColumn("jadwal");
-      String sql="SELECT pasien.nama, dokter.nama,pembayaran.jumlah_bayar,dokter.jadwal\n" +
+      model.addColumn("byr");
+      String sql="SELECT pasien.nama, dokter.nama,pembayaran.jumlah_bayar,dokter.jadwal,no_bayar\n" +
 "FROM pembayaran inner JOIN pasien\n" +
 "ON pembayaran.id_pasien = pasien.no_ktp \n" +
 "INNER JOIN dokter ON pembayaran.id_dokter = dokter.id_dokter";
         try {
             ResultSet res = new Read().exec(sql);
             while(res.next()){
-                 model.addRow(new Object[]{res.getString(1),res.getString(2),res.getString(3),res.getString(4)});
+                 model.addRow(new Object[]{res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5) });
             }
             this.tbl_asuransi.setModel(model);
         } catch (SQLException ex) {
@@ -338,6 +391,8 @@ public class TPembayaran extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDel;
+    private javax.swing.JButton btnDel1;
     private javax.swing.JButton btnRead;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btn_total;
@@ -345,6 +400,7 @@ public class TPembayaran extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -355,6 +411,7 @@ public class TPembayaran extends javax.swing.JFrame {
     private javax.swing.JTextField txtIdDokter;
     private javax.swing.JTextField txtJumlah;
     private javax.swing.JTextField txtKTP;
+    private javax.swing.JTextField txtbyr;
     // End of variables declaration//GEN-END:variables
 
     private int getPotongan(String id){
